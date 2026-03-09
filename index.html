@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Karla Ivankovic — Data Scientist, Translational Computational Neuroscience"/>
+  <title>Karla Ivankovic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink:        #0f0e0d;
+      --paper:      #f5f2ed;
+      --muted:      #8a8480;
+      --accent:     #c8502a;
+      --rule:       #d8d4ce;
+      --serif:      'DM Serif Display', Georgia, serif;
+      --mono:       'DM Mono', 'Courier New', monospace;
+      --max:        680px;
+      --pad:        clamp(1.5rem, 5vw, 3rem);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 17px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--mono);
+      font-weight: 300;
+      line-height: 1.7;
+      padding: var(--pad);
+      max-width: calc(var(--max) + var(--pad) * 2);
+      margin: 0 auto;
+      min-height: 100vh;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal { opacity: 0; animation: fadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+    .d1 { animation-delay: 0.05s; } .d2 { animation-delay: 0.15s; }
+    .d3 { animation-delay: 0.25s; } .d4 { animation-delay: 0.35s; }
+    .d5 { animation-delay: 0.45s; } .d6 { animation-delay: 0.55s; }
+    .d7 { animation-delay: 0.65s; }
+
+    header {
+      padding-top: clamp(2rem, 6vw, 4rem);
+      padding-bottom: clamp(2rem, 5vw, 3.5rem);
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    .eyebrow {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 8vw, 4.5rem);
+      line-height: 1.05; letter-spacing: -0.01em; margin-bottom: 1rem;
+    }
+
+    .tagline { font-size: 1rem; color: var(--muted); max-width: 42ch; margin-bottom: 1.8rem; }
+
+    nav { display: flex; flex-wrap: wrap; gap: 0.25rem 0; font-size: 0.82rem; letter-spacing: 0.04em; }
+    nav a {
+      color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--ink);
+      padding-bottom: 1px; transition: color 0.15s, border-color 0.15s; margin-right: 1.4rem;
+    }
+    nav a:hover { color: var(--accent); border-color: var(--accent); }
+
+    section { margin-bottom: clamp(2.5rem, 6vw, 4rem); }
+
+    h2 {
+      font-family: var(--serif); font-style: italic; font-size: 1.45rem;
+      font-weight: 400; color: var(--muted); margin-bottom: 1.4rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    h2::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+
+    p { margin-bottom: 0.9rem; max-width: 62ch; }
+
+    article {
+      padding: 1.2rem 0; border-bottom: 1px solid var(--rule);
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 0.5rem 1.5rem; align-items: start;
+    }
+    article:first-of-type { border-top: 1px solid var(--rule); }
+    .project-body { grid-column: 1; }
+
+    .project-title { font-family: var(--serif); font-size: 1.15rem; font-weight: 400; margin-bottom: 0.3rem; }
+    .project-title a {
+      color: var(--ink); text-decoration: none; border-bottom: 1px solid transparent;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .project-title a:hover { color: var(--accent); border-color: var(--accent); }
+
+    .project-desc { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.5rem; max-width: 52ch; }
+
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.4rem; }
+    .tag {
+      font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      border: 1px solid var(--rule); padding: 0.15rem 0.5rem; border-radius: 2px; color: var(--muted);
+    }
+
+    .project-pub { margin-top: 0.4rem; font-size: 0.8rem; color: var(--muted); }
+    .project-pub a { color: var(--accent); text-decoration: none; border-bottom: 1px solid currentColor; transition: opacity 0.15s; }
+    .project-pub a:hover { opacity: 0.75; }
+
+    .project-arrow {
+      font-size: 1rem; color: var(--rule); transition: color 0.15s, transform 0.15s;
+      padding-top: 0.2rem; grid-column: 2; grid-row: 1;
+    }
+    article:hover .project-arrow { color: var(--accent); transform: translate(3px, -3px); }
+
+    .roles { display: grid; gap: 1.8rem; }
+    .role { display: grid; grid-template-columns: 1fr auto; gap: 0.1rem 1rem; align-items: start; }
+    .role-title { font-weight: 500; font-size: 0.88rem; }
+    .role-co { font-size: 0.88rem; color: var(--muted); margin-bottom: 0.1rem; }
+    .role-period { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.05em; white-space: nowrap; padding-top: 0.15rem; }
+
+    .role-bullets { margin-top: 0.5rem; padding-left: 1.1rem; font-size: 0.82rem; color: var(--muted); display: grid; gap: 0.35rem; }
+    .role-bullets li { max-width: 58ch; }
+
+    footer {
+      border-top: 1px solid var(--rule); padding-top: 1.5rem; font-size: 0.75rem;
+      color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
+    }
+    footer a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--rule); transition: color 0.15s; }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 480px) {
+      .role { grid-template-columns: 1fr; }
+      .role-period { display: none; }
+      article { grid-template-columns: 1fr; }
+      .project-arrow { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <p class="eyebrow reveal d1">Portfolio</p>
+    <h1 class="reveal d2">Karla<br>Ivankovic</h1>
+    <p class="tagline reveal d3">Data Scientist · Translational Computational Neuroscience</p>
+    <nav class="reveal d4">
+      <a href="mailto:karla.ivk65@gmail.com">Email</a>
+      <a href="https://github.com/ivkarla" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/karlaivankovic" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://orcid.org/0000-0003-2252-6030" target="_blank" rel="noopener">ORCID</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section id="about" class="reveal d4">
+      <h2>About</h2>
+      <p>Data scientist with 5+ years in digital biomarkers and physiological time-series analysis, specialized in transforming high-dimensional sensor data into clinically interpretable models.</p>
+      <p>I build end-to-end Python pipelines, collaborate closely with clinicians and engineers, and translate research into tools for medical decision support. Looking to bring scientific depth into decision-grade evidence at a company committed to high-impact healthcare.</p>
+    </section>
+
+    <section id="education" class="reveal d5">
+      <h2>Education</h2>
+      <div class="roles">
+        <div class="role">
+          <div>
+            <p class="role-title">PhD · Biomedicine — Computational Neuroscience</p>
+            <p class="role-co">Universitat Pompeu Fabra — Barcelona, Spain</p>
+            <p class="project-pub">↳ <a href="http://hdl.handle.net/10803/694005" target="_blank" rel="noopener">Thesis: A novel computational framework for identifying epileptogenic networks based on functional connectivity changes</a></p>
+          </div>
+          <span class="role-period">2025</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="reveal d5">
+      <h2>Experience</h2>
+      <div class="roles">
+
+        <div class="role">
+          <div>
+            <p class="role-title">Scientist (Postdoctoral)</p>
+            <p class="role-co">Hospital del Mar Research Institute — Barcelona, Spain</p>
+            <ul class="role-bullets">
+              <li>Integrated multichannel EEG recordings with clinical records for 100+ patients, creating structured analysis-ready datasets and reproducible data workflows.</li>
+              <li>Built Python dashboards tracking model KPIs and automated patient stratification used by clinicians and MedTech collaborators.</li>
+              <li>Packaged analysis workflows into reproducible pipelines enabling non-developers to run analyses consistently across collaborating teams.</li>
+              <li>Guided junior colleagues in data & analysis preparation, ensuring internal standards across projects.</li>
+            </ul>
+          </div>
+          <span class="role-period">2025 – present</span>
+        </div>
+
+        <div class="role">
+          <div>
+            <p class="role-title">Scientist (Predoctoral)</p>
+            <p class="role-co">Hospital del Mar Research Institute / Universitat Pompeu Fabra — Barcelona, Spain</p>
+            <ul class="role-bullets">
+              <li>Developed 2 predictive models from time-series sensor data to forecast clinical outcomes, improving classification benchmarks for 200k patients/year.</li>
+              <li>Validated predictive models across 3 centers and recording conditions, ensuring robustness to noise, missing data and inter-subject variability.</li>
+              <li>Led a systematic review of 128 quantitative biomarker studies, evaluating statistical methodology, bias, and evidence quality.</li>
+              <li>Delivered 10+ presentations; won best-talk award for communicating complex statistical results to multidisciplinary stakeholders.</li>
+            </ul>
+          </div>
+          <span class="role-period">2020 – 2025</span>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="work" class="reveal d6">
+      <h2>Selected work</h2>
+
+      <article>
+        <div class="project-body">
+          <p class="project-title"><a href="https://github.com/principelab/multipec-core" target="_blank" rel="noopener">xPEC</a></p>
+          <p class="project-desc">Data-driven mapping of neural representations from neural activity data, applied to human EEG and convolutional neural networks.</p>
+          <div class="project-tags"><span class="tag">Python</span><span class="tag">Jupyter</span></div>
+          <p class="project-pub">↳ <a href="https://doi.org/10.1101/2025.11.18.688989" target="_blank" rel="noopener">Preprint · bioRxiv 2025</a></p>
+        </div>
+        <span class="project-arrow">↗</span>
+      </article>
+
+      <article>
+        <div class="project-body">
+          <p class="project-title"><a href="https://github.com/principelab/epigame-core" target="_blank" rel="noopener">EpiGAME</a></p>
+          <p class="project-desc">Framework for identifying epilepsy surgery targets using network analysis of intracranial EEG data.</p>
+          <div class="project-tags"><span class="tag">Python</span><span class="tag">Jupyter</span></div>
+        </div>
+        <span class="project-arrow">↗</span>
+      </article>
+
+      <article>
+        <div class="project-body">
+          <p class="project-title"><a href="https://github.com/principelab/epirev" target="_blank" rel="noopener">EpiRev</a></p>
+          <p class="project-desc">Methods for identifying epilepsy surgery targets using invasive EEG: a systematic review.</p>
+          <div class="project-tags"><span class="tag">Python</span><span class="tag">Jupyter</span></div>
+          <p class="project-pub">↳ <a href="https://doi.org/10.3390/biomedicines12112597" target="_blank" rel="noopener">Biomedicines 2024, 12(11), 2597</a></p>
+        </div>
+        <span class="project-arrow">↗</span>
+      </article>
+
+      <article>
+        <div class="project-body">
+          <p class="project-title"><a href="https://github.com/principelab/connectivity_change_reproducible" target="_blank" rel="noopener">Connectivity Changes</a></p>
+          <p class="project-desc">Cross-validation approach to measuring connectivity by machine learning for epilepsy surgery outcome prediction.</p>
+          <div class="project-tags"><span class="tag">Python</span><span class="tag">Jupyter</span></div>
+          <p class="project-pub">↳ <a href="https://doi.org/10.1016/j.neuroimage.2024.120990" target="_blank" rel="noopener">NeuroImage 2025, 306:120990</a></p>
+        </div>
+        <span class="project-arrow">↗</span>
+      </article>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <span>© 2026 Karla Ivankovic · <a href="mailto:karla.ivk65@gmail.com">karla.ivk65@gmail.com</a></span>
+    <span>Hosted on <a href="https://pages.github.com" target="_blank" rel="noopener">GitHub Pages</a></span>
+  </footer>
+
+</body>
+</html>
